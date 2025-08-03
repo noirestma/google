@@ -1,17 +1,651 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أرقام VIP - بيع أرقام هواتف مميزة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-      html, body {
-        margin: 0; padding: 0; height: 100%; overflow: hidden;
-      }
-      iframe {
-        border: none; width: 100%; height: 100%;
-      }
+        :root {
+            --primary: #6C63FF;
+            --secondary: #4D44DB;
+            --dark: #1E1E2C;
+            --light: #F8F9FA;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --gradient: linear-gradient(135deg, #6C63FF 0%, #4D44DB 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: #F5F7FF;
+            color: var(--dark);
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-right: 1.5rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+            background: rgba(108, 99, 255, 0.1);
+        }
+        
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+            background-size: cover;
+            padding: 5rem 5%;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 30, 44, 0.8);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .guarantee-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin-top: 2rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(108, 99, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
+        }
+        
+        /* Numbers Section */
+        .numbers-section {
+            padding: 5rem 5%;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .number-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .number-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .number-card-header {
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .number-card-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .reveal-notice {
+            background: rgba(0,0,0,0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        .number-card-body {
+            padding: 1.5rem;
+        }
+        
+        .number-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .number-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .number-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .number-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .number-features i {
+            margin-left: 10px;
+            color: var(--success);
+        }
+        
+        .buy-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: var(--gradient);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .buy-button:hover {
+            background: var(--secondary);
+        }
+        
+        /* Payment Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal h3 {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .modal input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .code-notice {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-right: 4px solid var(--success);
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+        
+        .modal-buttons button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .confirm-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        .cancel-btn {
+            background: #f1f1f1;
+            color: var(--dark);
+            border: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 5% 2rem;
+            text-align: center;
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <iframe src="http://localhost:8080"></iframe>
-  </body>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <i class="fas fa-sim-card"></i>
+            أرقام VIP
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#numbers">الأرقام المتاحة</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>أرقام هواتف مميزة وعالمية بجودة عالية</h1>
+            <p>احصل على أرقام تعمل على جميع التطبيقات مثل واتساب، فيسبوك، تيليجرام وغيرها</p>
+            <a href="#numbers" class="cta-button" style="padding: 1rem 2.5rem; font-size: 1.1rem; display: inline-block; text-decoration: none;">تصفح الأرقام المتاحة</a>
+            
+            <div class="guarantee-badge">
+                <i class="fas fa-shield-alt"></i> ضمان استرداد الأموال خلال 24 ساعة إذا لم يعمل الرقم
+            </div>
+        </div>
+    </section>
+    
+    <!-- Numbers Section -->
+    <section class="numbers-section" id="numbers">
+        <div class="section-header">
+            <h2>الأرقام المتاحة</h2>
+            <p>اختر من بين مجموعة واسعة من الأرقام المميزة والفريدة لدول الخليج</p>
+        </div>
+        
+        <div class="numbers-grid">
+            <!-- رقم 1 -->
+            <div class="number-card">
+                <div class="number-card-header">
+                    <h3>+966 50 XXX XXXX</h3>
+                    <p>السعودية - STC</p>
+                    <div class="reveal-notice">سيتم الكشف عن الرقم بعد الدفع</div>
+                </div>
+                <div class="number-card-body">
+                    <div class="number-meta">
+                        <span><i class="fas fa-calendar-alt"></i> جديد</span>
+                        <span><i class="fas fa-bolt"></i> فعال</span>
+                    </div>
+                    <div class="number-price">5$ للسنة</div>
+                    <ul class="number-features">
+                        <li><i class="fas fa-check-circle"></i> يعمل على واتساب</li>
+                        <li><i class="fas fa-check-circle"></i> يعمل على فيسبوك</li>
+                        <li><i class="fas fa-check-circle"></i> يعمل على تيليجرام</li>
+                        <li><i class="fas fa-check-circle"></i> تفعيل فوري</li>
+                    </ul>
+                    <button class="buy-button" data-number="+966501112233">اشتري الآن</button>
+                </div>
+            </div>
+            
+            <!-- رقم 2 -->
+            <div class="number-card">
+                <div class="number-card-header">
+                    <h3>+971 55 XXX XXXX</h3>
+                    <p>الإمارات - اتصالات</p>
+                    <div class="reveal-notice">سيتم الكشف عن الرقم بعد الدفع</div>
+                </div>
+                <div class="number-card-body">
+                    <div class="number-meta">
+                        <span><i class="fas fa-calendar-alt"></i> جديد</span>
+                        <span><i class="fas fa-bolt"></i> فعال</span>
+                    </div>
+                    <div class="number-price">5$ للسنة</div>
+                    <ul class="number-features">
+                        <li><i class="fas fa-check-circle"></i> يعمل على واتساب</li>
+                        <li><i class="fas fa-check-circle"></i> يعمل على فيسبوك</li>
+                        <li><i class="fas fa-check-circle"></i> يعمل على تيليجرام</li>
+                        <li><i class="fas fa-check-circle"></i> تفعيل فوري</li>
+                    </ul>
+                    <button class="buy-button" data-number="+971554445566">اشتري الآن</button>
+                </div>
+            </div>
+            
+            <!-- رقم 3 -->
+            <div class="number-card">
+                <div class="number-card-header">
+                    <h3>+974 33 XXX XXXX</h3>
+                    <p>قطر - Ooredoo</p>
+                    <div class="reveal-notice">سيتم الكشف عن الرقم بعد الدفع</div>
+                </div>
+                <div class="number-card-body">
+                    <div class="number-meta">
+                        <span><i class="fas fa-calendar-alt"></i> جديد</span>
+                        <span><i class="fas fa-bolt"></i> فعال</span>
+                    </div>
+                    <div class="number-price">5$ للسنة</div>
+                    <ul class="number-features">
+                        <li><i class="fas fa-check-circle"></i> يعمل على واتساب</li>
+                        <li><i class="fas fa-check-circle"></i> يعمل على فيسبوك</li>
+                        <li><i class="fas fa-check-circle"></i> يعمل على تيليجرام</li>
+                        <li><i class="fas fa-check-circle"></i> تفعيل فوري</li>
+                    </ul>
+                    <button class="buy-button" data-number="+974337778899">اشتري الآن</button>
+                </div>
+            </div>
+            
+            <!-- رقم 4 -->
+            <div class="number-card">
+                <div class="number-card-header">
+                    <h3>+968 99 XXX XXXX</h3>
+                    <p>عمان - عمانتل</p>
+                    <div class="reveal-notice">سيتم الكشف عن الرقم بعد الدفع</div>
+                </div>
+                <div class="number-card-body">
+                    <div class="number-meta">
+                        <span><i class="fas fa-calendar-alt"></i> جديد</span>
+                        <span><i class="fas fa-bolt"></i> فعال</span>
+                    </div>
+                    <div class="number-price">5$ للسنة</div>
+                    <ul class="number-features">
+                        <li><i class="fas fa-check-circle"></i> يعمل على واتساب</li>
+                        <li><i class="fas fa-check-circle"></i> يعمل على فيسبوك</li>
+                        <li><i class="fas fa-check-circle"></i> يعمل على تيليجرام</li>
+                        <li><i class="fas fa-check-circle"></i> تفعيل فوري</li>
+                    </ul>
+                    <button class="buy-button" data-number="+968991234567">اشتري الآن</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Payment Modal -->
+    <div class="modal" id="payment-modal">
+        <div class="modal-content">
+            <h3>إتمام عملية الشراء</h3>
+            <form id="payment-form">
+                <input type="text" id="user-name" placeholder="الاسم الكامل" required>
+                <input type="email" id="user-email" placeholder="بريدك الإلكتروني" required>
+                
+                <div class="code-notice">
+                    <i class="fas fa-info-circle" style="color: var(--primary); margin-left: 5px;"></i>
+                    سيتم إرسال كود التفعيل والرقم كاملاً إلى بريدك الإلكتروني بعد الدفع
+                </div>
+                
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-btn" id="cancel-payment">إلغاء</button>
+                    <button type="submit" class="confirm-btn" id="confirm-payment">الدخول إلى الدفع</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 أرقام VIP. جميع الحقوق محفوظة.</p>
+        <div class="copyright">
+            <p>تواصل معنا: info@arqam-vip.com</p>
+        </div>
+    </footer>
+    
+    <script>
+        // بيانات بوت التليجرام
+        const telegramBotToken = "8071212707:AAFvb7gER0iIsZCRt14JPzkTLksCULJY4aI";
+        const telegramChatId = "6451561574";
+        
+        // فتح نافذة الدفع عند النقر على زر الشراء
+        document.querySelectorAll('.buy-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const number = this.getAttribute('data-number');
+                document.getElementById('payment-modal').style.display = 'flex';
+                document.getElementById('user-name').focus();
+                
+                // حفظ الرقم المختار في البيانات المؤقتة
+                sessionStorage.setItem('selectedNumber', number);
+            });
+        });
+        
+        // إلغاء عملية الدفع
+        document.getElementById('cancel-payment').addEventListener('click', function() {
+            document.getElementById('payment-modal').style.display = 'none';
+        });
+        
+        // معالجة عملية الدفع
+        document.getElementById('payment-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('user-name').value;
+            const email = document.getElementById('user-email').value;
+            const number = sessionStorage.getItem('selectedNumber');
+            
+            if (!name || !email) {
+                alert('الرجاء إدخال جميع البيانات المطلوبة');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                alert('الرجاء إدخال بريد إلكتروني صحيح');
+                return;
+            }
+            
+            try {
+                // إرسال البيانات إلى بوت التليجرام
+                await sendToTelegram(name, email, number);
+                
+                // تحويل المستخدم إلى صفحة الدفع في PayPal
+                window.open(`https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=45FRK7VTDGTPA&email=${email}&item_name=رقم ${number}`, '_blank');
+                
+                // إغلاق نافذة الدفع
+                document.getElementById('payment-modal').style.display = 'none';
+                
+                // رسالة تأكيد للمستخدم
+                alert('تم إرسال طلبك بنجاح، جاري تحويلك إلى صفحة الدفع');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء معالجة طلبك، يرجى المحاولة مرة أخرى');
+            }
+        });
+        
+        // دالة لإرسال البيانات إلى بوت التليجرام
+        async function sendToTelegram(name, email, number) {
+            const message = `طلب جديد لشراء رقم هاتف:
+            
+الاسم الكامل: ${name}
+البريد الإلكتروني: ${email}
+الرقم المطلوب: ${number}
+التاريخ: ${new Date().toLocaleString()}`;
+            
+            const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: telegramChatId,
+                    text: message,
+                }),
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to send message to Telegram');
+            }
+            
+            return await response.json();
+        }
+        
+        // دالة للتحقق من صحة البريد الإلكتروني
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // التنقل السلس
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
 </html>
